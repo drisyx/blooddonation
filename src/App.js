@@ -4,8 +4,8 @@ import Header from './components/Header';
 import HomePage from './components/HomePage';
 import DonorForm from './components/DonorForm';
 import RequestForm from './components/RequestForm';
-
-import Login from './components/Login'; 
+import Login from './components/Login';
+import Profile from './components/Profile';
 
 const App = () => {
   return (
@@ -17,6 +17,7 @@ const App = () => {
           <Route path="/donor-registration" element={<DonorForm />} />
           <Route path="/request-blood" element={<RequestForm />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/Profile" element={<Profile />} />
         </Routes>
       </div>
      

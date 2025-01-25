@@ -12,7 +12,7 @@ const Homepage = () => {
         <Typography variant="h6" paragraph>
           Your blood can save lives. Join the movement to donate blood today and make a real difference!
         </Typography>
-        <Button variant="contained" color="primary" href="/donor-registration">
+        <Button variant="contained" color="secondary" href="/donor-registration">
           Become a Donor
         </Button>
       </Box>

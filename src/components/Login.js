@@ -53,7 +53,7 @@ const Login = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <Button variant="contained" color="primary" type="submit" fullWidth sx={{ marginTop: 2 }}>
+          <Button variant="contained" color="secondary" type="submit" fullWidth sx={{ marginTop: 2 }}>
             Login
           </Button>
         </form>
