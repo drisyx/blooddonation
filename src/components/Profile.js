@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import { Container, Typography, TextField, Button, Box, Grid, Card, CardContent } from '@mui/material';
 
 const Profile = () => {
-  const [name, setName] = useState('John Doe');
-  const [email, setEmail] = useState('johndoe@example.com');
+  const [name, setName] = useState('Rahul Kumar');
+  const [email, setEmail] = useState('rahulkumar@gmail.com');
   const [donationHistory, setDonationHistory] = useState([
-    'January 2024 - 1st Donation',
+    'January 2023 - 1st Donation',
     'May 2024 - 2nd Donation',
   ]);
   const [editing, setEditing] = useState(false);
@@ -81,7 +81,7 @@ const Profile = () => {
         <Box sx={{ marginTop: 3 }}>
           <Button
             variant="contained"
-            color={editing ? 'primary' : 'secondary'}
+            color={editing ? 'error' : 'error'}
             onClick={editing ? handleSave : handleEditToggle}
           >
             {editing ? 'Save Changes' : 'Edit Profile'}

@@ -4,7 +4,7 @@ import { AppBar, Toolbar, Button, Typography } from '@mui/material';
 
 const Header = () => {
   return (
-    <AppBar position="sticky" color="secondary">
+    <AppBar position="sticky" color="error">
       <Toolbar>
         <Typography variant="h6" sx={{ flexGrow: 1 }}>
           BloodHub

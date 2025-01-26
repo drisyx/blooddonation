@@ -72,7 +72,7 @@ const Donorform = () => {
           />
           <Button
             variant="contained"
-            color="secondary"
+            color="error"
             type="submit"
             sx={{ marginTop: 2 }}
           >
