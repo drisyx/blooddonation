@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { TextField, Button, Container, Box, Typography } from '@mui/material';
+import axios from 'axios';
 
 const Requestform = () => {
   const [requestInfo, setRequestInfo] = useState({
@@ -9,6 +10,8 @@ const Requestform = () => {
     contact: '',
   });
 
+  const [responseMessage, setResponseMessage] = useState('');
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setRequestInfo({
@@ -17,12 +20,20 @@ const Requestform = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!requestInfo.name || !requestInfo.bloodType || !requestInfo.hospital || !requestInfo.contact) {
       alert('Please fill in all fields.');
     } else {
-      alert('Blood request submitted!');
+      try {
+        const response = await axios.post('http://localhost:5000/api/request_blood', requestInfo);
+        setResponseMessage(response.data.message); // Set success message
+        alert('Blood request submitted successfully!');
+        setRequestInfo({ name: '', bloodType: '', hospital: '', contact: '' }); // Clear the form
+      } catch (error) {
+        console.error('Error submitting blood request:', error);
+        alert('Failed to submit blood request. Please try again.');
+      }
     }
   };
 
@@ -69,7 +80,6 @@ const Requestform = () => {
             value={requestInfo.contact}
             onChange={handleChange}
           />
-         
           <Button
             variant="contained"
             color="error"
@@ -79,6 +89,11 @@ const Requestform = () => {
             Submit Request
           </Button>
         </form>
+        {responseMessage && (
+          <Typography variant="body1" color="success.main" sx={{ marginTop: 2 }}>
+            {responseMessage}
+          </Typography>
+        )}
       </Box>
     </Container>
   );

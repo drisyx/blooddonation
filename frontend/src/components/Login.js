@@ -1,25 +1,44 @@
 import React, { useState } from 'react';
 import { Container, Box, TextField, Button, Typography, Paper } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';  // Import axios for API requests
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false); // To handle loading state
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  // Handle form submit
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!email || !password) {
       setError('Please fill in both fields.');
       return;
     }
     setError('');
-    // Dummy authentication logic (you can replace with real auth logic)
-    if (email === 'donor@example.com' && password === 'password123') {
-      navigate('/');
-    } else {
-      setError('Invalid credentials, please try again.');
+    setLoading(true); // Start loading
+
+    try {
+      // Make an API call to the backend for login
+      const response = await axios.post('http://localhost:5000/api/login', {
+        email,
+        password,
+      });
+
+      if (response.data.success) {
+        // Redirect user on successful login
+        navigate('/');
+      } else {
+        // Handle incorrect credentials
+        setError('Invalid credentials, please try again.');
+      }
+    } catch (error) {
+      // Handle API errors
+      setError('Something went wrong. Please try again later.');
+    } finally {
+      setLoading(false); // Stop loading
     }
   };
 
@@ -53,8 +72,15 @@ const Login = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <Button variant="contained" color="error" type="submit" fullWidth sx={{ marginTop: 2 }}>
-            Login
+          <Button
+            variant="contained"
+            color="error"
+            type="submit"
+            fullWidth
+            sx={{ marginTop: 2 }}
+            disabled={loading} // Disable button during loading
+          >
+            {loading ? 'Logging In...' : 'Login'}
           </Button>
         </form>
         <Box sx={{ display: 'flex', justifyContent: 'center', marginTop: 2 }}>
