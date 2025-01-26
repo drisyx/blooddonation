@@ -69,15 +69,7 @@ const Requestform = () => {
             value={requestInfo.contact}
             onChange={handleChange}
           />
-           <TextField
-            label="e-mail"
-            variant="outlined"
-            fullWidth
-            margin="normal"
-            name="contact"
-            value={requestInfo.contact}
-            onChange={handleChange}
-          />
+         
           <Button
             variant="contained"
             color="error"
